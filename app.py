@@ -8,6 +8,7 @@ from io import BytesIO
 
 import pandas as pd
 from google import genai
+from google.genai import types 
 
 
 # =========================================================
@@ -713,13 +714,12 @@ Rules:
             response = client.models.generate_content(
                 model=MODEL_NAME,
                 contents=[
-                    prompt,
-                    {
-                        "mime_type": uploaded_file.type,
-                        "data": image_bytes
-                    }
-                ]
-            )
+    types.Part.from_text(text=prompt),
+    types.Part.from_bytes(
+        data=image_bytes,
+        mime_type=uploaded_file.type
+    )
+]
 
             data = extract_json(
                 getattr(response, "text", "")
