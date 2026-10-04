@@ -720,7 +720,7 @@ Rules:
         mime_type=uploaded_file.type
     )
 ]
-
+            )
             data = extract_json(
                 getattr(response, "text", "")
             )
