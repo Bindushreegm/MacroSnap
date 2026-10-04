@@ -746,8 +746,7 @@ Rules:
                     continue
 
                 return {
-                    "error":
-                    "The AI service is temporarily busy. Please try again in a moment."
+                    "error": f"Food analysis failed:{str(e)}"
                 }
 
             if "404" in error_text or "not found" in error_text:
